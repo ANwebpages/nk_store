@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NK STORE</title>
+    <link rel="icon" href="./nk_store_logo.png" type="image/x-icon">
+    <style>
+        h1{
+            text-align: center;
+            font-size: 110px;
+            font-family:'Algerian', Times, serif;
+            font-weight:bold;
+            color:rgb(221, 36, 12);
+            -webkit-text-stroke:0.5px black;
+
+        }
+        .welcome{
+            text-align: center;
+            font-family: Wide Latin;
+            font-size: 35px;
+        }
+        img{
+            position: absolute;
+            border-radius: 10%;
+            right:0px;
+            top: 0px;
+            
+        }
+        body{
+            background-image: url("./store_background.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-attachment:fixed;
+            
+        }
+        .sticker{
+            text-align: center;
+            font-family: Imprint MT Shadow;
+            font-size: 30px;
+        }
+        .custom{
+            text-align: center;
+            font-family: Magneto;
+            font-size: 40px;
+            color:rgb(17, 5, 104);
+        animation: blink-animation 4s steps(5, start) infinite;
+        -webkit-animation: blink-animation 1s steps(5, start) infinite;
+      }
+      @keyframes blink-animation {
+        to {
+          visibility: hidden;
+        }
+      }
+      @-webkit-keyframes blink-animation {
+        to {
+          visibility: hidden;
+        }
+      }
+        span{
+            color:brown;
+        }
+    .buy{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #06ce88;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width: 90px;
+    }
+    .buybutton{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    </style>
+</head>
+<body>
+    <img src="./nk_store_logo.png" width="120px" height="100px"> 
+    <h1>NK STORE</h1> 
+    <div style="display: inline-block;"></div> 
+    <p class="welcome">
+        Welcome to NK STORE.
+    </p>
+    </div>
+    <div class="sticker">
+        We have <span>STICKERS</span> for sale.
+    </div><br>
+    <div class="custom">
+        Customized name stickers are also available.
+    </div><br>
+    <h2  style="text-align: center;">For any information,<br> Contact : <a href="">nkstore757@gmail.com</a></h2>
+    <div class="buybutton">
+        <a href="./stickers.html"><button class="buy">VISIT</button></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NK STORE</title>
+    <link rel="icon" href="./nk_store_logo.png" type="image/x-icon">
+    <style>
+    body{
+        background-image: url("./store_background.jpg");
+        background-repeat: no-repeat;
+        background-size:cover;
+        background-attachment:fixed;
+        
+    }
+    .back{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: red;
+            color:white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position:fixed;
+            top:10px;
+            left:10px;
+
+        }
+    .form{
+        border:none;
+        background-color: bisque;
+        padding: 10px 20px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+        gap:20px;
+    }
+    .for{
+        display:flex;
+        height:700px;
+        align-items:flex-start;
+        justify-content: space-evenly;
+    }
+    h1{
+        font-size: 30px;
+        text-align: center;
+    }
+    .submit{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color:orange;
+            color:white;
+            font-size: 20px;
+    }
+        
+    </style>
+</head>
+<body>
+    <a href="./stickers.html">
+        <button class="back">Back</button>
+    </a><br>
+    <h1>Cost will depend upon sticker size.</h1>
+    <div class="for">
+
+    <form  method="post" class="form" onkeydown="return event.key !== 'Enter';" id="form">
+        <input type="hidden" name="access_key" value="17f9bcaf-2514-49bd-a956-b6ce0a7bf4f6">
+        <div><input  type="hidden" name="sticker" value="LION"  id="sticker" style="width: 50px;" readonly></div>
+        <div>Enter your name:<br><input type="text" name="name" id="name" placeholder="Your name" maxlength="20" required></div>
+        <div>Enter your phone number:<br><input type="text" id="phonenumber" ame="phonenumber" placeholder="Your phone number"  minlength="10" maxlength="10" onkeypress="return event.charCode>=48 && event.charCode<=58" required></div>
+        <div>Enter your Whatsapp number:<br><input type="text"  id="whatsappnumber" name="whatsappnumber" placeholder="Your Whatsapp number"  minlength="10" maxlength="10" onkeypress="return event.charCode>=48 && event.charCode<=58" required></div>
+        <div>Enter your email:<br><input type="email" name="email" id="email" placeholder="Your email"></div>
+        <div>Colour:<br><select for="colour" name="colour" id="colour" required>
+        <option value="" disabled selected>Select</option>
+        <option value="neon">Neon</option>
+        <option value="black">Black</option>
+        <option value="darkgreen">Dark green</option>
+        <option value="orange">Orange</option>
+        <option value="yellow">Yellow</option>
+        <option value="red">Red</option>
+        <option value="white">White</option>
+        <option value="darkblue">Dark blue</option>
+        <option value="lightbrown">Light brown</option>
+        </select>
+        </div>
+        <div>Number of stickers:<br><input type="number" name="Number" value="1" id="number" required></div>
+        <div>Size (in cms):<br>Length:<br><input type="number" name="length" id="length" required><br>
+            Height:<br><input type="number" name="height" id="height" required></div>
+        <div><span id="cost">Cost (in rupees):</span><br><a onclick="cost()"><div style="text-align:center; cursor:pointer;border:none;background-color: honeydew;color:rgb(245, 34, 227); width: 75px; border-radius: 10%;">Show cost</div></a></div>
+        <div>Any other details:<br><textarea name="otherdetails" id="otherdetails"></textarea></div>
+        <div><button type="submit" name="submit" class="submit">Submit</button></div>
+        <div id="result"></div>
+        <div><a href="./confirm.html"><span style="font-size: 30px;">NEXT</a></div>
+        
+    </form>
+    </div>
+    <script>
+        function cost(){
+            var length=document.getElementById("length").value;
+            var height=document.getElementById("height").value;
+            var number=document.getElementById("number").value;
+            var area=parseFloat(length)*parseFloat(height);
+            var result=parseFloat(area)*1.2*number;
+            var finalcost=Math.round(result/10)*10;
+            if(!NaN){
+                if(finalcost<10){
+                    document.getElementById("cost").innerText=`Cost (in rupees):10`;
+
+                }
+                else{
+                document.getElementById("cost").innerText=`Cost (in rupees):`+finalcost;
+                }
+            }
+        }
+        
+
+        const form = document.getElementById('form');
+        const result = document.getElementById('result');
+        
+        form.addEventListener('submit', function(e) {
+            const formData = new FormData(form);
+            e.preventDefault();
+        
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+        
+            result.innerHTML = "Thanks for ordering "
+        
+            fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        result.innerHTML = json.message;
+                    } else {
+                        console.log(response);
+                        result.innerHTML = json.message;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    result.innerHTML = "Something went wrong!";
+                })
+                .then(function() {
+                    form.reset();
+                    setTimeout(() => {
+                        result.style.display = "none";
+                    }, 3000);
+                });
+        });
+        </script>
+
+</body>
+</html>
