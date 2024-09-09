@@ -64,7 +64,8 @@
         <button class="back">Back</button>
     </a><br>
     <h1>Cost will depend upon letter size and number of letters.<br>
-    Your name will be customized in all capital letters.</h1>
+    Your name will be customized in all capital letters.<br>
+    PACK OF 2</h1>
     <div class="for">
 
     <form  method="post" class="form" onkeydown="return event.key !== 'Enter';" id="form">
@@ -106,11 +107,11 @@
             var height=document.getElementById("height").value;
             var remText = custom.replace(/ /g, "");
             var namelength = remText.length;
-            var cost = length*height*namelength*2;
+            var cost = length*height*namelength*3;
             var finalcost=Math.round(cost/10)*10;
             if(!NaN){
-                if(finalcost<10){
-                    total=document.getElementById("cost").innerText=`Cost (in rupees):10`;
+                if(finalcost<20){
+                    total=document.getElementById("cost").innerText=`Cost (in rupees):20`;
 
                 }
                 else{
