@@ -52,12 +52,30 @@
             left:10px;
 
         }
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color:orangered;
+            animation: blink .5s infinite; 
+        }
     </style>
 </head>
 <body>
     <a href="./index.html">
         <button class="back">Back</button>
-    </a>
+    </a><br>
+    <h1>LIMITED STOCK AVAILABLE<br>CANCEL OPTION IS NOT AVAILABLE</h1>
     
     <div class="full">
         <div><img src="./om.png"><br><a href="./buyom.html"><button class="buy">BUY</button></a></div>
